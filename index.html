@@ -1,0 +1,104 @@
+<!DOCTYPE html><html>
+<head>
+  <title>The Cyber Deck - Card Draw</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-image: url('https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif');
+      background-size: cover;
+      background-blend-mode: overlay;
+    }h1 {
+  font-size: 3rem;
+  text-shadow: 0 0 10px #ff0055, 0 0 20px #00f0ff;
+  margin-bottom: 40px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  width: 150px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 15px rgba(255, 0, 100, 0.6), 0 0 15px rgba(0, 255, 255, 0.6);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #fff;
+  text-shadow: 0 0 5px #00f0ff;
+}
+
+button {
+  background: linear-gradient(135deg, #ff0055, #00f0ff);
+  border: none;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px #ff0055, 0 0 15px #00f0ff;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+  </style>
+</head>
+<body>
+  <h1>THE CYBER DECK</h1>  <div class="card-container" id="cardContainer">
+    <!-- Cards will appear here -->
+  </div><button onclick="drawCards()">DRAW</button>
+
+  <script>
+    const cards = [
+      "SCRALATE BLADE 3EP",
+      "VOID SPIKE 2EP",
+      "SILENT CORE",
+      "FORST LOCK",
+      "PHASE GRUAD",
+      "LOST DATA SLASH -5 EP",
+      "STROM PIECER 2EP",
+      "ECHO CHAMBER",
+      "CRIMSON FANG 2EP",
+      "ENERGY BOOST"
+    ];
+
+    function drawCards() {
+      const shuffled = [...cards].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0,5);
+
+      const container = document.getElementById('cardContainer');
+      container.innerHTML = '';
+
+      selected.forEach(card => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerText = card;
+        container.appendChild(div);
+      });
+    }
+  </script></body>
+</html>
