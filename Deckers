@@ -1,76 +1,129 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
-  <title>The Cyber Deck - Card Draw</title>
+  <title>THE CYBER DECK DRAW</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+      background-color: #000;
       color: #fff;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      background-image: url('https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif');
-      background-size: cover;
-      background-blend-mode: overlay;
-    }h1 {
-  font-size: 3rem;
-  text-shadow: 0 0 10px #ff0055, 0 0 20px #00f0ff;
-  margin-bottom: 40px;
-}
+      overflow-x: hidden;
+      position: relative;
+    }
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+    /* Full Red Glitch Background */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 85, 0.08),
+        rgba(255, 0, 85, 0.08) 2px,
+        rgba(255, 0, 85, 0.08) 4px,
+        rgba(255, 0, 85, 0.08) 6px
+      );
+      pointer-events: none;
+      animation: glitch 0.8s infinite linear;
+    }
 
-.card {
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: 20px;
-  width: 150px;
-  height: 100px;
-  background: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 15px rgba(255, 0, 100, 0.6), 0 0 15px rgba(0, 255, 255, 0.6);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: #fff;
-  text-shadow: 0 0 5px #00f0ff;
-}
+    @keyframes glitch {
+      0% { transform: translate(0,0); }
+      20% { transform: translate(1px, -1px); }
+      40% { transform: translate(-1px, 1px); }
+      60% { transform: translate(1px, 1px); }
+      80% { transform: translate(-1px, -1px); }
+      100% { transform: translate(0,0); }
+    }
 
-button {
-  background: linear-gradient(135deg, #ff0055, #00f0ff);
-  border: none;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  font-size: 1rem;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 0 15px #ff0055, 0 0 15px #00f0ff;
-  transition: transform 0.3s ease;
-}
+    h1 {
+      font-size: 1.8rem;
+      text-shadow: 0 0 8px #ff0055, 0 0 12px #ff0055;
+      margin-bottom: 10px;
+      z-index: 1;
+      text-align: center;
+    }
 
-button:hover {
-  transform: scale(1.1);
-}
+    h2 {
+      font-size: 0.9rem;
+      text-shadow: 0 0 5px #ff0055;
+      margin-bottom: 20px;
+      z-index: 1;
+      text-align: center;
+      font-weight: normal;
+    }
 
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      z-index: 1;
+      padding: 0 10px;
+      max-width: 100%;
+    }
+
+    .card {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 10px;
+      width: 100px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 8px rgba(255, 0, 100, 0.5);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.7rem;
+      color: #fff;
+      text-shadow: 0 0 3px #ff0055;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff0055, #ff0055);
+      border: none;
+      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      font-size: 0.8rem;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff0055, 0 0 15px #ff0055;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 25px;
+      z-index: 1;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ff0055, 0 0 25px #ff0055;
+    }
   </style>
 </head>
 <body>
-  <h1>THE CYBER DECK</h1>  <div class="card-container" id="cardContainer">
+  <h1>THE CYBER DECK</h1>
+  <h2>DRAW YOUR FATE</h2>
+
+  <div class="card-container" id="cardContainer">
     <!-- Cards will appear here -->
-  </div><button onclick="drawCards()">DRAW</button>
+  </div>
+
+  <button onclick="drawCards()">DRAW</button>
 
   <script>
     const cards = [
@@ -88,7 +141,7 @@ button:hover {
 
     function drawCards() {
       const shuffled = [...cards].sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0,5);
+      const selected = shuffled.slice(0, 5);
 
       const container = document.getElementById('cardContainer');
       container.innerHTML = '';
@@ -100,5 +153,6 @@ button:hover {
         container.appendChild(div);
       });
     }
-  </script></body>
+  </script>
+</body>
 </html>
